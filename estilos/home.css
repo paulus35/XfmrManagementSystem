@@ -1,0 +1,105 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+  background-image: url(../img/back.jpg);
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-color: #000;
+  background-attachment: fixed;
+}
+
+header {
+  width: 100%;
+  color: #fff;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  align-content: center;
+  justify-content: space-between;
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+header h1 {
+  text-align: center;
+  margin-left: 10px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 20px;
+}
+
+header a {
+  margin-right: 10px;
+  text-align: center;
+  text-decoration: none;
+  color: #fff;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 20px;
+  transition: all ease 300ms;
+}
+
+header a:hover {
+  color: #b4d2d4;
+}
+
+.trs {
+  position: absolute;
+  align-content: center;
+  justify-content: space-between;
+}
+
+.contenedor img{
+  width: 400px;
+  height: 300px;
+  box-align: center;
+  justify-content: space-between;
+
+}
+
+.contenedor {
+  position: relative;
+  margin-left: 20px;
+  margin-right: 20px;
+  margin-top: 30px;
+  display: inline-block;
+  flex-wrap: wrap;
+  align-items: center;
+  align-content: center;
+  justify-content: space-between;
+  overflow: hidden;
+  color: #fff;
+  transition: 0.6s;
+}
+.contenedor:hover h1, .contenedor:hover p {
+  transform: translateX(0%);
+  transition: 0.6s;
+}
+.contenedor h1 {
+  font-size: 20px;
+  width: 100%;
+  position: absolute;
+  left: 20px;
+  top: 15px;
+  transform: translateX(-110%);
+}
+.contenedor p {
+  font-size: 15px;
+  width: 100%;
+  position: absolute;
+  left: 20px;
+  top: 260px;
+  transform: translateX(120%);
+}
+
+footer p {
+  margin-top: 8%;
+  margin-left: 0.1%;
+  text-align: left;
+  text-decoration: none;
+  color: #fff;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 20px;
+}
+

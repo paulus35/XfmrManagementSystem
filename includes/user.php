@@ -1,16 +1,15 @@
 <?php
 
-/* Para la primera versión este código no tiene utilidad, pero es un avance de la versión final. */
-
 include 'db.php';
 
 class User extends DB{
 
     private $nombre;
-    private $username;
+    private $user;
+    private $pass;
 
     public function userExists($user, $pass){
-        $sha1pass = sha1($pass);
+        $sha1pass = sha1($pass); //aquí va sha1($pass)
 
         $query = $this->connect()->prepare('SELECT * FROM usuarios WHERE username =:user AND password =:pass');
 
@@ -41,7 +40,34 @@ class User extends DB{
         return $this->nombre;
     }
 
+    public function createUser($nombre, $user, $pass){
+        $sha1pass = sha1($pass); //aquí va sha1($pass)
+
+        $query = $this->connect()->prepare('INSERT INTO usuarios (id,nombre,username,password) VALUES (null,:nombre,:user,:pass)');
+
+        $query->execute([':nombre' => $nombre, ':user' => $user, ':pass' => $sha1pass]);
+
+        if($query->rowCount()){
+            //echo "escribio";
+            return true;
+        } else {
+            //echo "no escribio";
+            return false;
+        }
+
+    }
+
+    public function validateUser($user){
+        
+        $query = $this->connect()->prepare('SELECT * FROM usuarios WHERE username = :user LIMIT 1');
+        
+        $query->execute(array(':user' => $user));
+        
+        return $resultado = $query->fetch();
+    }
+
 }
+
 
 
 ?>

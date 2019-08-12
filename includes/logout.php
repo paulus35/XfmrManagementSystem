@@ -1,4 +1,4 @@
-<?php //inicia el código php
+<?php //
 
     include_once 'user_session.php'; //se incluye el fichero user sesión
 

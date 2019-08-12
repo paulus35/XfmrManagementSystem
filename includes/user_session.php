@@ -1,4 +1,4 @@
-<?php // Este codigo se utilizará en la versión final para la sesión verificada en la base de datos
+<?php 
 
 class UserSession{
 

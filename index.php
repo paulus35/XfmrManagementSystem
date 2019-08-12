@@ -1,20 +1,35 @@
-<?php //Inicia el código php que muestra la pantalla principal dependiendo si la sesión está activa
-include_once 'includes/user.php'; // Incluye y evalúa el fichero, en este caso user.php
-include_once 'includes/user_session.php';//incluye el fichero user_session.php
+<?php
+include_once 'includes/funciones.php';
+include_once 'includes/user.php';
+include_once 'includes/user_session.php';
 
+$userSession = new UserSession();
+$user = new User();
 
-$userSession = new UserSession(); //se crea un objeto UserSession(), 
-$user = new User(); //Se crea un nuevo objeto de tipo USER()
+if(isset($_SESSION['user'])){
+    //echo "hay sesion";
+    $user->setUser($userSession->getCurrentUser());
+    include_once 'vistas/home.php';
 
-if(isset($_SESSION['user'])){//se condiciona la session para saber la existencia de user
-
-    $user->setUser($userSession->getCurrentUser());//aqui muestra el valor nulo en el espacio que se observa en pantalla, correspondiente a user
-    include_once 'vistas/home.php';//Incluye el fichero home.php
-
-} else {
-
-    include_once 'vistas/index.php'; // Si no entra en sesión, regresa a la pagina principal
+}else if(isset($_POST['username']) && isset($_POST['password'])){
     
-}
+    $userForm = $_POST['username'];
+    $passForm = $_POST['password'];
 
+    $user = new User();
+    if($user->userExists($userForm, $passForm)){
+        //echo "Existe el usuario";
+        $userSession->setCurrentUser($userForm);
+        $user->setUser($userForm);
+
+        include_once 'vistas/home.php';
+    }else{
+        //echo "No existe el usuario";
+        $errorLogin = "Nombre de usuario y/o password incorrecto.";
+        include_once 'vistas/login.php';
+    }
+}else{
+    //echo "login";
+    include_once 'vistas/login.php';
+}
 ?>
